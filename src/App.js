@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
+import { ListUser } from "./components/ListUser";
+import { CreateUser } from "./components/CreateUser";
+import { EditUser } from "./components/EditUser";
+import { DetailUser } from "./components/DetailUser";
+
+import { GlobalProvider } from "./context/GlobalState";
+// import TestUser from "./components/TestUser";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+        <header className="text-center">
+          <h2>Crocodic Test</h2>
+        </header>
+        <Switch>
+          <Route path="/" component={ListUser} exact />
+          <Route path="/create" component={CreateUser} exact />
+          <Route path="/edit/:id" component={EditUser} exact />
+          <Route path="/detail/:id" component={DetailUser} exact />
+        </Switch>
+
+        {/* <div className="container">
+          <h2>Backend DataTest</h2>
+
+          <TestUser />
+        </div> */}
+    </GlobalProvider>
   );
 }
 
